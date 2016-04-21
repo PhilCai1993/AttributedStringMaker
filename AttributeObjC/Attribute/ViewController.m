@@ -41,9 +41,9 @@
   
   NSLog(@"%@", ats);
   
-  
-  
-  
+  NSString *s = @"abc";
+  id a1 = s.attribute;
+  id a2 = s.attribute;
   
   
   
