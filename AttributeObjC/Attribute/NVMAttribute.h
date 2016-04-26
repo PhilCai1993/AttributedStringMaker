@@ -13,10 +13,13 @@
 typedef NVMAttribute*(^NVMAttributeFontBlock)(UIFont *);
 typedef NVMAttribute*(^NVMAttributeColorBlock)(UIColor *);
 typedef NVMAttribute*(^NVMAttributeFloatBlock)(CGFloat);
-
+typedef NVMAttribute*(^NVMAttributeShadowBlock)(NSShadow *) ;
+typedef NVMAttribute*(^NVMAttributeStringBlock)(NSString *);
+typedef NVMAttribute*(^NVMAttributeAttachmentBlock)(NSTextAttachment *) ;
 typedef NVMAttribute*(^NVMAttributeRangeBlock)(NSRange);
-typedef NVMAttribute*(^NVMAttributeIntBlock)(NSUInteger);
-typedef NVMAttribute*(^NVMAttributeIntIntBlock)(NSUInteger, NSUInteger);
+
+typedef NVMAttribute*(^NVMAttributeIntBlock)(NSInteger);
+typedef NVMAttribute*(^NVMAttributeIntIntBlock)(NSInteger, NSInteger);
 
 @interface NVMAttribute : NSObject
 
@@ -29,6 +32,21 @@ typedef NVMAttribute*(^NVMAttributeIntIntBlock)(NSUInteger, NSUInteger);
 - (NVMAttributeColorBlock)backgroundColor;
 - (NVMAttributeColorBlock)strokeColor;
 - (NVMAttributeFloatBlock)strokeWidth;
+- (NVMAttributeIntBlock)ligature;
+- (NVMAttributeFloatBlock)kern;
+- (NVMAttributeIntBlock)strikethroughStyle;
+- (NVMAttributeIntBlock)underlineStyle;
+- (NVMAttributeShadowBlock)shadow;
+- (NVMAttributeStringBlock)textEffectLetterPress;
+- (NVMAttributeAttachmentBlock)attachment;
+- (NVMAttributeStringBlock)link;
+- (NVMAttributeFloatBlock)offset;
+- (NVMAttributeColorBlock)underlineColor;
+- (NVMAttributeColorBlock)strikethroughColor;
+- (NVMAttributeFloatBlock)oblique;
+- (NVMAttributeFloatBlock)expand;
+- (NVMAttributeIntBlock)writingDirection;
+- (NVMAttributeIntBlock)verticalGlyphForm;
 
 - (NVMAttributeRangeBlock)range;
 /// 和range作用相同
@@ -37,5 +55,7 @@ typedef NVMAttribute*(^NVMAttributeIntIntBlock)(NSUInteger, NSUInteger);
 - (NVMAttributeIntBlock)from;
 - (NVMAttributeIntBlock)to;
 
+/// 正则匹配所有的
+- (NVMAttributeStringBlock)pattern;
 
 @end

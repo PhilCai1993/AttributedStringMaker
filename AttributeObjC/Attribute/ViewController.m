@@ -18,16 +18,15 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  UILabel *l = [UILabel new];
+  UITextView *l = [UITextView new];
   l.frame = self.view.bounds;
-  l.numberOfLines = 0;
   l.textAlignment = NSTextAlignmentCenter;
   [self.view addSubview:l];
   
   
   
   NSMutableAttributedString *ats =
-  @"我们邀你加入自带杯的行列多一点循环使用, 多一点绿色的可能"
+  @"504277874我们邀你加入自带杯的行列多一点循环使用,504277874 多一点绿色的可能,504277874"
           .font([UIFont systemFontOfSize:30])
           .range(NSMakeRange(2, 3)).textColor([UIColor redColor])
 //          .range(NSMakeRange(0, 5)).backgroundColor([UIColor greenColor])
@@ -37,16 +36,11 @@
           .fromTo(12,18).textColor([UIColor brownColor])
           .from(15).backgroundColor([UIColor lightGrayColor])
           .to(8).font([UIFont boldSystemFontOfSize:25])
+          .pattern(@"[0-9]{5,9}").font([UIFont systemFontOfSize:100]).textColor([UIColor yellowColor])
           .string;
   
   NSLog(@"%@", ats);
-  
-  NSString *s = @"abc";
-  id a1 = s.attribute;
-  id a2 = s.attribute;
-  
-  
-  
+
   
   l.attributedText = ats;
   // Do any additional setup after loading the view, typically from a nib.

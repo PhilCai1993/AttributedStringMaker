@@ -70,6 +70,114 @@
   };
 }
 
+- (NVMAttributeIntBlock)ligature {
+  return ^NVMAttribute *(NSInteger ligature) {
+    [self setValue:@(ligature) forAttribute:NSLigatureAttributeName];
+    return self;
+  };
+}
+
+- (NVMAttributeFloatBlock)kern {
+  return ^NVMAttribute *(CGFloat kern) {
+    [self setValue:@(kern) forAttribute:NSKernAttributeName];
+    return self;
+  };
+}
+
+- (NVMAttributeIntBlock)strikethroughStyle {
+  return ^NVMAttribute *(NSUnderlineStyle style) {
+    [self setValue:@(style) forAttribute:NSStrikethroughStyleAttributeName];
+    return self;
+  };
+}
+
+- (NVMAttributeIntBlock)underlineStyle {
+  return ^NVMAttribute *(NSUnderlineStyle style) {
+    [self setValue:@(style) forAttribute:NSUnderlineStyleAttributeName];
+    return self;
+  };
+}
+
+- (NVMAttributeShadowBlock)shadow {
+  return ^NVMAttribute *(NSShadow *shadow) {
+    [self setValue:shadow forAttribute:NSShadowAttributeName];
+    return self;
+  };
+}
+
+- (NVMAttributeStringBlock)textEffectLetterPress {
+  return ^NVMAttribute *(NSString *effect) {
+    [self setValue:effect forAttribute:NSTextEffectAttributeName];
+    return self;
+  };
+}
+
+- (NVMAttributeAttachmentBlock)attachment {
+  return ^NVMAttribute *(NSTextAttachment *attachment) {
+    [self setValue:attachment forAttribute:NSAttachmentAttributeName];
+    return self;
+  };
+}
+
+- (NVMAttributeStringBlock)link {
+  return ^NVMAttribute *(NSString *link) {
+    [self setValue:link forAttribute:NSLinkAttributeName];
+    return self;
+  };
+}
+
+- (NVMAttributeFloatBlock)offset {
+  return ^NVMAttribute *(CGFloat offset) {
+    [self setValue:@(offset) forAttribute:NSBaselineOffsetAttributeName];
+    return self;
+  };
+}
+
+- (NVMAttributeColorBlock)underlineColor {
+  return ^NVMAttribute *(UIColor *color) {
+    [self setValue:color forAttribute:NSUnderlineColorAttributeName];
+    return self;
+  };
+}
+
+- (NVMAttributeColorBlock)strikethroughColor {
+  return ^NVMAttribute *(UIColor *color) {
+    [self setValue:color forAttribute:NSStrikethroughColorAttributeName];
+    return self;
+  };
+}
+
+- (NVMAttributeFloatBlock)oblique {
+  return ^NVMAttribute *(CGFloat oblique) {
+    [self setValue:@(oblique) forAttribute:NSObliquenessAttributeName];
+    return self;
+  };
+}
+
+- (NVMAttributeFloatBlock)expand {
+  return ^NVMAttribute *(CGFloat expand) {
+    [self setValue:@(expand) forAttribute:NSExpansionAttributeName];
+    return self;
+  };
+}
+
+- (NVMAttributeIntBlock)writingDirection {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+  return ^NVMAttribute *(NSTextWritingDirection direction) {
+    [self setValue:@(direction) forAttribute:NSWritingDirectionAttributeName];
+    return self;
+  };
+#pragma clang diagnostic pop
+}
+
+- (NVMAttributeIntBlock)verticalGlyphForm {
+  return ^NVMAttribute *(NSInteger glyph) {
+    [self setValue:@(glyph) forAttribute:NSVerticalGlyphFormAttributeName];
+    return self;
+  };
+}
+
 #pragma mark - Range
 
 - (NVMAttributeRangeBlock)range {
@@ -81,7 +189,7 @@
 }
 
 - (NVMAttributeIntIntBlock)fromTo {
-  return ^NVMAttribute *(NSUInteger from, NSUInteger to) {
+  return ^NVMAttribute *(NSInteger from, NSInteger to) {
     [self.ranges removeAllObjects];
     [self.ranges addObject:[NSValue valueWithRange:NSMakeRange(from, to - from)]];
     return self;
@@ -89,7 +197,7 @@
 }
 
 - (NVMAttributeIntBlock)from {
-  return ^NVMAttribute *(NSUInteger from) {
+  return ^NVMAttribute *(NSInteger from) {
     [self.ranges removeAllObjects];
     [self.ranges addObject:[NSValue valueWithRange:NSMakeRange(from, self.string.length - from)]];
     return self;
@@ -97,9 +205,20 @@
 }
 
 - (NVMAttributeIntBlock)to {
-  return ^NVMAttribute *(NSUInteger to) {
+  return ^NVMAttribute *(NSInteger to) {
     [self.ranges removeAllObjects];
     [self.ranges addObject:[NSValue valueWithRange:NSMakeRange(0, to)]];
+    return self;
+  };
+}
+
+- (NVMAttributeStringBlock)pattern {
+  return ^NVMAttribute *(NSString *pattern) {
+    [self.ranges removeAllObjects];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:nil];
+    [regex enumerateMatchesInString:self.string.string options:NSMatchingReportProgress range:NSMakeRange(0, self.string.string.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+      [self.ranges addObject:[NSValue valueWithRange:[result range]]];
+    }];
     return self;
   };
 }

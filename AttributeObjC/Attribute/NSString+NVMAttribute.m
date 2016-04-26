@@ -41,6 +41,66 @@
   return self.attribute.strokeWidth;
 }
 
+- (NVMAttributeIntBlock)ligature {
+  return self.attribute.ligature;
+}
+
+- (NVMAttributeFloatBlock)kern {
+  return self.attribute.kern;
+}
+
+- (NVMAttributeIntBlock)strikethroughStyle {
+  return self.attribute.strikethroughStyle;
+}
+
+- (NVMAttributeIntBlock)underlineStyle {
+  return self.attribute.underlineStyle;
+}
+
+- (NVMAttributeShadowBlock)shadow {
+  return self.attribute.shadow;
+}
+
+- (NVMAttributeStringBlock)textEffectLetterPress {
+  return self.attribute.textEffectLetterPress;
+}
+
+- (NVMAttributeAttachmentBlock)attachment {
+  return self.attribute.attachment;
+}
+
+- (NVMAttributeStringBlock)link {
+  return self.attribute.link;
+}
+
+- (NVMAttributeFloatBlock)offset {
+  return self.attribute.offset;
+}
+
+- (NVMAttributeColorBlock)underlineColor {
+  return self.attribute.underlineColor;
+}
+
+- (NVMAttributeColorBlock)strikethroughColor {
+  return self.attribute.strikethroughColor;
+}
+
+- (NVMAttributeFloatBlock)oblique {
+  return self.attribute.oblique;
+}
+
+- (NVMAttributeFloatBlock)expand {
+  return self.attribute.expand;
+}
+
+- (NVMAttributeIntBlock)writingDirection {
+  return self.attribute.writingDirection;
+}
+
+- (NVMAttributeIntBlock)verticalGlyphForm {
+  return self.attribute.verticalGlyphForm;
+}
+
 - (NVMAttributeRangeBlock)range {
   return self.attribute.range;
 }
@@ -55,6 +115,10 @@
 
 - (NVMAttributeIntBlock)to {
   return self.attribute.to;
+}
+
+- (NVMAttributeStringBlock)pattern {
+  return self.attribute.pattern;
 }
 
 @end

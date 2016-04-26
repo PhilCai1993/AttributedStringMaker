@@ -19,11 +19,28 @@
 - (NVMAttributeColorBlock)backgroundColor;
 - (NVMAttributeColorBlock)strokeColor;
 - (NVMAttributeFloatBlock)strokeWidth;
+- (NVMAttributeIntBlock)ligature;
+- (NVMAttributeFloatBlock)kern;
+- (NVMAttributeIntBlock)strikethroughStyle;
+- (NVMAttributeIntBlock)underlineStyle;
+- (NVMAttributeShadowBlock)shadow;
+- (NVMAttributeStringBlock)textEffectLetterPress;
+- (NVMAttributeAttachmentBlock)attachment;
+- (NVMAttributeStringBlock)link;
+- (NVMAttributeFloatBlock)offset;
+- (NVMAttributeColorBlock)underlineColor;
+- (NVMAttributeColorBlock)strikethroughColor;
+- (NVMAttributeFloatBlock)oblique;
+- (NVMAttributeFloatBlock)expand;
+- (NVMAttributeIntBlock)writingDirection;
+- (NVMAttributeIntBlock)verticalGlyphForm;
+
 
 - (NVMAttributeRangeBlock)range;
 /// 和range作用相同
 - (NVMAttributeIntIntBlock)fromTo;
 - (NVMAttributeIntBlock)from;
 - (NVMAttributeIntBlock)to;
+- (NVMAttributeStringBlock)pattern;
 
 @end
